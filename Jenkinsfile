@@ -8,12 +8,12 @@ pipeline {
 
     stages {
 	
-        #stage('git clone') {
-        #    steps {
-        #        git url : 'https://github.com/aviseksaha/avisek-web-war-project.git',
-	#			branch : 'main'
-        #    }
-	#}
+        //stage('git clone') {
+        //    steps {
+        //        git url : 'https://github.com/aviseksaha/avisek-web-war-project.git',
+	//			branch : 'main'
+        //    }
+	//}
 		
 	stage('build') {
             steps {
