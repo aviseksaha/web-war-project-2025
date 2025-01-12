@@ -5,21 +5,23 @@ pipeline {
 		PATH = "/opt/maven/bin:$PATH"
 	}
 	
-
-    stages {
 	
-        //stage('git clone') {
-        //    steps {
-        //        git url : 'https://github.com/aviseksaha/avisek-web-war-project.git',
-	//			branch : 'main'
-        //    }
-	//}
+    stages {
 		
-	stage('build') {
+		stage('build') {
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean deploy'
             }
         }
+		stage('SonarQube analysis') {
+			environment{
+			scannerHome = tool 'saidemy-sonar-scanner'
+		}
+			steps {
+                withSonarQubeEnv('saidemy-sonarqube-server') {
+					sh '${scannerHome}/bin/sonar-scanner'
+				}
+			}
+		}
     }
 }
-
